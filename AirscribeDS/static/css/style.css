@@ -1,0 +1,35 @@
+.container-fluid{
+    font-family: Proza Libre;
+    /* background-color:white; */
+    /* color: #1A3358; */
+    /* --bs-gutter-x: 6.5rem; */
+    /* --bs-gutter-x: 12.5rem */
+  }
+  .nav-item{
+    font-size: 120%;
+    /* color: #1A3358; */
+    
+    /* padding: 10px; */
+    /* gap: 10px; */
+}
+.navbar-nav .nav-item .nav-link:hover {
+  color:crimson ; /* Replace with your desired hover color */
+  /* background-color: blue; Optional: Background color on hover */
+}
+.form-label{
+font-size: 150%;
+}
+.form-control {
+  line-height: 2.5;
+  font-size: 120%;
+  }
+  .btn{ 
+    /* width:30%; */
+    line-height:2.5 ;
+    margin-top: 10px;
+    
+  }
+  p,a{
+font-size: 120%;
+font-family: Proza Libre;
+  }

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Proza Libre">
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Caveat"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</head>
+<body >
+  
+  <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary fixed-top">
+    <div class="container-fluid">
+      <div class="fonts ">
+        AirScribe Decipher System
+      </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse justify-content-end px-4" id="navbarNav">
+      
+        </div>
+    </div>
+</nav>
+
+
+
+   <div class="parent" >
+    <!-- <img src="{% static 'images/login.jpg'%}" width="100%" height="auto"> -->
+    <div class="login ">
+        <h4 class="heading" style="text-align: center; margin-bottom: 50px;">LOGIN</h4>
+        <form method="post" action="{% url 'Login' %}">
+          {% csrf_token %}
+          <div class="form-group mb-2 ">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email"  name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your email address">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder=" Enter your password">
+          </div>
+         
+          <div class="text-center mt-5  ">
+
+            <button type="submit" class="btn btn-primary m-auto fonts ">Submit</button>
+          </div>
+        </form>
+            {{error}}
+            </div>
+        </div>
+</body>
+</html>
+
+<style>
+  .fonts{
+    font-size: 20px;
+  }
+.parent{
+    width: 100%;
+    height: 925px;
+    background-image: url(../static/images/login.jpg);
+    background-size: cover;
+    padding-top: 300px;
+}
+.login{
+  font-size: 25px;
+  padding: 20px;
+  margin: auto;
+  border-radius: 20px;
+  border-bottom: 10px;
+  background-color: rgba(255, 255, 255, 0.699);
+  border-radius: 20px;
+}
+@media screen and (min-width: 480px) {
+  .login{
+  font-size: 25px;
+  width: 30%;
+  padding: 20px;
+  margin: auto;
+  border-radius: 20px;
+  border-bottom: 10px;
+  background-color: rgba(255, 255, 255, 0.699);
+  border-radius: 20px;
+}
+}
+
+
+
+</style>
