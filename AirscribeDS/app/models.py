@@ -20,4 +20,9 @@ class User(models.Model):
     Password=models.CharField(max_length=50)  
     Confirm_password=models.CharField(max_length=50)
     
+class Review(models.Model):
+    user_id=models.ForeignKey(User,on_delete=models.CASCADE)
+    review=models.CharField(max_length=200,null=True,blank=True)
+    rating=models.IntegerField(null=True,blank=True)
+
 

@@ -4,20 +4,71 @@
   {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Reviews</title>
+    <title>change password</title>
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Proza Libre">
-    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Caveat"> -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <style>
+        .rate {
+        float: left;
+        height: 46px;
+        padding: 0 10px;
+      }
+    
+      .rate:not(:checked)>input {
+        position: absolute;
+        top: -9999px;
+      }
+    
+      .rate:not(:checked)>label {
+        float: right;
+        width: 1em;
+        overflow: hidden;
+        white-space: nowrap;
+        cursor: pointer;
+        font-size: 30px;
+        color: #ccc;
+      }
+    
+      .rate:not(:checked)>label:before {
+        content: '★ ';
+      }
+    
+      .rate>input:checked~label {
+        color: #ffc700;
+      }
+    
+      .rate:not(:checked)>label:hover,
+      .rate:not(:checked)>label:hover~label {
+        color: #deb217;
+      }
+    
+      .rate>input:checked+label:hover,
+      .rate>input:checked+label:hover~label,
+      .rate>input:checked~label:hover,
+      .rate>input:checked~label:hover~label,
+      .rate>label:hover~input:checked~label {
+        color: #c59b08;
+      }
+
+      .navbar{
+    background-color: #B7AC83;
+}
+
+.main{
+  background-image: url(../static/images/background2.jpg);
+  background-size:cover;
+  height:965px;
+  padding-top: 30px;
+}
+    </style>
 </head>
-<body >
+<body>
   <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-body-tertiary" style="padding: 10px;">
     <div class="container-fluid">
-        <div class="brand">
-            <a class="navbar-brand" href="#" style="font-size: 180%;">Air Scribe Decipherer System</a>
+        <div class="brand">Air Scribe Decipherer System
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -31,74 +82,105 @@
         </div>
     </div>
 </nav>
-   <div class="parent justify-content-center align-items-center" >
-    <!-- <img src="https://i.pinimg.com/originals/4e/c5/b1/4ec5b191105af173c49611f917c1897a.jpg" width="100%" height="100%"> -->
-    </div>
-    <div class="child">
-        <h2>Reviews</h2>
-        <div class="review-list">
-          <!-- Sample review card -->
-          <div class="card mb-3">
-            <div class="card-body">
-              <h5 class="card-title">Archana</h5>
-              <p class="card-text">Excellent service!</p>
-              <div class="rating">
-                <span class="rating-stars">&#9733;</span>
-                <span class="rating-stars">&#9733;</span>
-                <span class="rating-stars">&#9733;</span>
-                <span class="rating-stars">&#9733;</span>
-                <span class="rating-stars">&#9733;</span>
+<div class="container-fluid main">
+    <div class="d-flex justify-content-center pt-5" >
+    <button type="button" class="btn btn-primary w-50" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Review
+      </button>
+      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Review/Rating</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class="forms-sample" action="{%  url 'user_view_review' %}" method="post">
+                {% csrf_token %}
+
+            <div class="modal-body">
+                <div class="form-group">
+                  <label for="exampleTextarea1">Review</label>
+                  <textarea class="form-control" name="review" id="exampleTextarea1" required></textarea >
+                </div>
+               
+              
+              <div class="rate">
+                <input type="radio" id="star5" name="rating" value="5" />
+                <label for="star5" title="text">5 stars</label>
+                <input type="radio" id="star4" name="rating" value="4" />
+                <label for="star4" title="text">4 stars</label>
+                <input type="radio" id="star3" name="rating" value="3" />
+                <label for="star3" title="text">3 stars</label>
+                <input type="radio" id="star2" name="rating" value="2" />
+                <label for="star2" title="text">2 stars</label>
+                <input type="radio" id="star1" name="rating" value="1" />
+                <label for="star1" title="text">1 star</label>
               </div>
             </div>
-          </div>
-  
-          <!-- Add more review cards as needed -->
-          <div class="card mb-3">
-            <div class="card-body">
-              <h5 class="card-title">John Doe</h5>
-              <p class="card-text">Highly recommended.</p>
-              <div class="rating">
-                <span class="rating-stars">&#9733;</span>
-                <span class="rating-stars">&#9733;</span>
-                <span class="rating-stars">&#9733;</span>
-                <span class="rating-stars">&#9733;</span>
-                <span class="rating-stars">&#9733;</span>
-              </div>
+            
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">submit</button>
             </div>
+          </form>
           </div>
         </div>
       </div>
+      {{message}}
     </div>
+
+
+    <div class="pt-5">
+      <table class="table ">
+        <tr>
+          <th>NAME</th>
+          <th>REVIEW</th>
+          <th>RATING</th>
+        </tr>
+        {% for i in reviews %}
+        <tr>
+          <td>{{i.user.name}}</td>
+          <td>{{i.review}}</td>
+          <td>
+              <div>
+                <div style="color: rgb(233, 136, 10);font-size: 20px;">
+                  {% for star_value in "★★★★★"|slice:i.rating  %}
+                  <span class="star">&#9733;</span>
+                  {% endfor %}
+                </div>
+              </div>
+            </td>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+
+    <div class="pagination mt-3 d-flex justify-content-end pe-5 mb-4  fw-bold text-black text-end ">
+      <span class="step-links  ">
+        {% if reviews.has_previous %}
+        <a class="btn btn-dark" href="?page=1">&laquo; first</a>
+        <a class="btn btn-dark" href="?page={{ reviews.previous_page_number }}">previous</a>
+        {% endif %}
+        {% if reviews.has_next %}
   
-    
-            
-            
-      
+        <a href="?page={{ reviews.paginator.num_pages }}" class="text-decoration-none text-white btn btn-dark ">last &raquo;</a>
+        {% endif %}
+        <span class="current">
+          Page {{ reviews.number }} of {{ reviews.paginator.num_pages }}.
+        </span>
+  
+        {% if reviews.has_next %}
+  
+        <a href="?page={{ reviews.next_page_number }}"
+          class="text-decoration-none text-white  btn btn-dark ">next</a>
+        {% endif %}
+      </span>
+    </div>
+</div>
+
 </body>
 </html>
-<style>
-    
-    .parent {
-  background: url("{% static 'images/background4.jpg'%}") no-repeat;
-  background-size: cover;
-  padding: 100px 0px;
-  height: 980px;
-  position: relative;
-}
-
-.child {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 20px;
-  width: 40%;
-  background-color: rgba(255, 255, 255, 0.634);
-  padding: 20px;
-}
-.rating-stars {
-      font-size: 50px;
-      /* cursor: pointer; */
-    }
-
-</style>

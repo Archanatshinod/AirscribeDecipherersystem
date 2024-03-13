@@ -58,7 +58,20 @@
               <td>{{i.Phone}}</td>
               <td>{{i.Dob}}</td>
               <td>{{i.Gender}} </td>
-              
+              <td>
+              <form action="{% url 'user_status' id=i.login.id %}" method="post" class="d-flex">
+                {% csrf_token %}
+                {% if i.login.Status == "Pending" %}
+                <input type="text" name="status" hidden>
+                <button class="btn btn-success ms-5" name="Status" value="Accepted">ACCEPT</button>
+                <button class="btn btn-danger ms-5  " name="Status" value="Rejected">REJECT</button>
+                {% elif i.login.Status == "Accepted" %}
+                <button class="btn btn-danger ms-5 " name="Status" value="Rejected">REJECT</button>
+                {% else %}
+                <button class="btn btn-success ms-5" name="Status" value="Accepted">ACCEPT</button>
+                {% endif %}
+              </form>
+            </td>
             </tr>
             {% endfor %}
             

@@ -1,13 +1,13 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .models import Login,User
+from .models import Login,User,Review
 
 # Create your views here.
 ###landing page###
 def landing(request):
     return render(request,'landing_page.html')
 
-def login(request):
+def logins(request):
     if request.method=='POST':
         username=request.POST['username']
         password=request.POST['password']
@@ -74,8 +74,14 @@ def admin_home(request):
     return render(request,'admin_home.html')
 
 def view_users(request):
+    data1=User.objects.filter(login__Status="Accepted")
+    return render(request,'view_users.html',{'data':data1})
+
+def verify_users(request):
     data=User.objects.all()
-    return render(request,'view_users.html',{'data':data})
+    return render(request,'verify_user.html',{'data':data})
+
+
 
 def user_status(request,id):
     data=Login.objects.get(id=id)
@@ -86,24 +92,33 @@ def user_status(request,id):
         elif data1=='Rejected':
            data.Status='Rejected'
         data.save() 
-    return redirect(view_users)
+    return redirect(verify_users)
 
-
-###common###
 def change_password(request):
-    return render(request,'change_password.html')
+    data=request.session['id']
+    data1=Login.objects.get(id=data)
+    if request.method=='POST':
+        newpwd=request.POST['newpwd']
+        confpwd=request.POST['confpwd']
+        if newpwd!=confpwd:
+                return render(request,'change_password.html',{'x':'Password not matching!!!'})
+        else:
+            data1.Password=newpwd
+            data1.save()
+            return render(request,'change_password.html',{'x':'Password Successfully changed'})
+    else:
+        return render(request,'change_password.html')
 
-def changepassword_user(request):
-    return render(request,'changepassword_user.html')
 
 def view_review(request):
-    return render(request,'view_review.html')
+    data=Login.objects.all()
+    return render(request,'view_review.html',{'data':data})
 
-def user_view_review(request):
-    return render(request,'user_view_review.html')
+
+
 
     
-
+####user
 
 
 def user_home(request):
@@ -127,11 +142,36 @@ def edit_profile(request,id):
         return redirect(view_profile)
     else:
         return render(request,'edit_profile.html',{'data':data})
+    
 
 def rating(request):
     return render(request,'rating.html')   
 
+def changepassword_user(request):
+    data=request.session['id']
+    data1=Login.objects.get(id=data)
+    data2=User.objects.get(login=data1.id)
+    if request.method=="POST":
+        newpwd=request.POST['newpwd']
+        confpwd=request.POST['confpwd']
+        if newpwd!=confpwd:
+            return render(request,'change_password.html',{'x':'Password not matching!!!'})
+        else:
+            data1.Password=newpwd
+            data1.save()
+            data2.Password=newpwd
+            data2.Confirm_password=confpwd
+            data2.save()
+    return render(request,'changepassword_user.html')
 
+def user_view_review(request):
+    data=request.session['id']
+    data1=Login.objects.get(id=data)
+    data2=User.objects.get(login=data1.id)
+    if request.method=="POST":
+        review=request.POST['review']
+        rating=request.POST['']
+    return render(request,'user_view_review.html')
 
 
 

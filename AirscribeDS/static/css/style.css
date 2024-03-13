@@ -20,8 +20,8 @@
 font-size: 150%;
 }
 .form-control {
-  line-height: 2.5;
-  font-size: 120%;
+  /* line-height: 2.5; */
+  font-size: 100%;
   }
   .btn{ 
     /* width:30%; */
@@ -32,4 +32,5 @@ font-size: 150%;
   p,a{
 font-size: 120%;
 font-family: Proza Libre;
+text-decoration: none;
   }
