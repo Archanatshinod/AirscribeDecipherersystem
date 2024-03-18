@@ -1,5 +1,6 @@
 .container-fluid{
     font-family: Proza Libre;
+    /* font-size: 180%; */
     /* background-color:white; */
     /* color: #1A3358; */
     /* --bs-gutter-x: 6.5rem; */
@@ -34,3 +35,8 @@ font-size: 120%;
 font-family: Proza Libre;
 text-decoration: none;
   }
+  /* .fonts{ */
+    /* font-size: 100%; */
+    /* font-family: Proza Libre; */
+  /* } */
+  

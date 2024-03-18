@@ -70,15 +70,14 @@
 
   <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-body-tertiary" style="padding: 10px;">
     <div class="container-fluid">
-        <div class="brand">Air Scribe Decipherer System
-        </div>
+      <h2>Air Scribe Decipherer System</h2>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'user_home' %}"><i class="fa-solid fa-angles-left"></i>&nbsp; Home</a>
+                    <a class="nav-link" href="{% url 'admin_home' %}"><i class="fa-solid fa-angles-left"></i>&nbsp; Home</a>
                 </li>
             </ul>
         </div>
@@ -91,10 +90,11 @@
           <th>NAME</th>
           <th>REVIEW</th>
           <th>RATING</th>
+          <th>POSTED ON:</th>
         </tr>
-        {% for i in reviews %}
+        {% for i in data %}
         <tr>
-          <td>{{i.user.name}}</td>
+          <td>{{i.user_id.Name}}</td>
           <td>{{i.review}}</td>
           <td>
               <div>
@@ -106,7 +106,9 @@
               </div>
             </td>
           </td>
-        </tr>
+          <td>{{i.date}}</td>
+          </tr>
+        
         {% endfor %}
       </table>
     </div>
@@ -114,21 +116,21 @@
 
     <div class="pagination mt-3 d-flex justify-content-end pe-5 mb-4  fw-bold text-black text-end ">
       <span class="step-links  ">
-        {% if reviews.has_previous %}
+        {% if data.has_previous %}
         <a class="btn btn-dark" href="?page=1">&laquo; first</a>
-        <a class="btn btn-dark" href="?page={{ reviews.previous_page_number }}">previous</a>
+        <a class="btn btn-dark" href="?page={{ data.previous_page_number }}">previous</a>
         {% endif %}
-        {% if reviews.has_next %}
+        {% if data.has_next %}
   
-        <a href="?page={{ reviews.paginator.num_pages }}" class="text-decoration-none text-white btn btn-dark ">last &raquo;</a>
+        <a href="?page={{ data.paginator.num_pages }}" class="text-decoration-none text-white btn btn-dark ">last &raquo;</a>
         {% endif %}
-        <span class="current">
-          Page {{ reviews.number }} of {{ reviews.paginator.num_pages }}.
+        <span class="current text-white">
+          Page {{ data.number }} of {{ data.paginator.num_pages }}.
         </span>
   
-        {% if reviews.has_next %}
+        {% if data.has_next %}
   
-        <a href="?page={{ reviews.next_page_number }}"
+        <a href="?page={{ data.next_page_number }}"
           class="text-decoration-none text-white  btn btn-dark ">next</a>
         {% endif %}
       </span>

@@ -24,5 +24,6 @@ class Review(models.Model):
     user_id=models.ForeignKey(User,on_delete=models.CASCADE)
     review=models.CharField(max_length=200,null=True,blank=True)
     rating=models.IntegerField(null=True,blank=True)
+    date=models.DateTimeField(auto_now=True)
 
 

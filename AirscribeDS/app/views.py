@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import Login,User,Review
+from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
 
 # Create your views here.
 ###landing page###
@@ -111,7 +112,17 @@ def change_password(request):
 
 
 def view_review(request):
-    data=Login.objects.all()
+    content=Review.objects.all()
+    items_per_page = 10
+    paginator = Paginator(content, items_per_page)
+    page = request.GET.get('page', 1)
+
+    try:
+        data = paginator.page(page)
+    except PageNotAnInteger:
+        data = paginator.page(1)
+    except EmptyPage:
+        data = paginator.page(paginator.num_pages)
     return render(request,'view_review.html',{'data':data})
 
 
@@ -168,10 +179,25 @@ def user_view_review(request):
     data=request.session['id']
     data1=Login.objects.get(id=data)
     data2=User.objects.get(login=data1.id)
+    content=Review.objects.all()
+    items_per_page = 1
+    paginator = Paginator(content, items_per_page)
+    page = request.GET.get('page', 1)
+
+    try:
+        data = paginator.page(page)
+    except PageNotAnInteger:
+        data = paginator.page(1)
+    except EmptyPage:
+        data = paginator.page(paginator.num_pages)
     if request.method=="POST":
         review=request.POST['review']
-        rating=request.POST['']
-    return render(request,'user_view_review.html')
+        rating=request.POST['rating']
+        data3=Review.objects.create(user_id=data2,review=review,rating=rating)
+        data3.save()
+        return render(request,'user_view_review.html',{'message':'Review/Rating added successfully!!!','reviews':data})
+    else:
+        return render(request,'user_view_review.html',{'reviews':data})
 
 
 
