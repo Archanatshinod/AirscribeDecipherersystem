@@ -56,10 +56,14 @@
         <div class="start text-center mt-5">
             <span style="font-family: 'Shantell Sans'; color: white; font-size: 250%;">Start Air Scribe</span>
             <div class="play-btn-box">
-                <div class="play-button"><i class="fas fa-play"></i></div>
-                <div class="play-btn-line1" id="line1">
-                    <div class="play-btn-line2" id="line2"></div>
-                </div>
+              <!-- <div class="play-btn-box"></div> -->
+                <!-- <div class="play-btn-line1" id="line1"> -->
+                    <!-- <div class="play-btn-line2" id="line2"> -->
+                    <div class="stable"><a href="www.youtube.com"><svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="white" class="bi bi-play-circle-fill" viewBox="0 0 16 16">
+                      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"/>
+                    </svg></a></div> 
+                  <!-- </div> -->
+                <!-- </div> -->
             </div>
         </div>
     </div>
@@ -116,7 +120,9 @@
   align-items: center;
   justify-content: center;
   border-right-color: transparent;
+  animation: rotation 4s infinite linear;
 }
+
 .play-btn-line2 {
   border: 2px rgba(255, 255, 255, 0.451) solid;
   border-radius: 50%;
@@ -126,7 +132,9 @@
   align-items: center;
   justify-content: center;
   border-right-color: transparent;
+  animation: rotation1 3s infinite linear;
 }
+
 .play-button {
   background-color: rgb(255, 255, 255);
   width: 106px;
@@ -141,6 +149,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
 }
+
 .play-button .fas {
   width: 30px;
   height: 30px;
@@ -148,33 +157,34 @@
   font-size: 30px;
 }
 
-#line1 {
-  -webkit-animation: rotation 4s infinite linear;
+a:hover {
+  color: blue;
 }
 
-@-webkit-keyframes rotation {
+.px-0 {
+  padding-left: 5px;
+}
+
+@keyframes rotation {
   from {
-    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   to {
-    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
   }
 }
 
-#line2 {
-  -webkit-animation: rotation1 3s infinite linear;
-}
-
-@-webkit-keyframes rotation1 {
+@keyframes rotation1 {
   from {
-    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   to {
-    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
   }
 }
 a:hover{
     color: blue;
+    transform: none;
 }
 .px-0{
   padding-left: 5px;

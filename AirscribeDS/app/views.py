@@ -191,8 +191,8 @@ def user_view_review(request):
     except EmptyPage:
         data = paginator.page(paginator.num_pages)
     if request.method=="POST":
-        review=request.POST['review']
-        rating=request.POST['rating']
+        review=request.POST.get('review',None)
+        rating=request.POST.get('rating',0)
         data3=Review.objects.create(user_id=data2,review=review,rating=rating)
         data3.save()
         return render(request,'user_view_review.html',{'message':'Review/Rating added successfully!!!','reviews':data})
