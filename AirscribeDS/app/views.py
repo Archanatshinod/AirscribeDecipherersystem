@@ -32,7 +32,7 @@ def logins(request):
     
 
 def logout(request):
-    # if 'id' in request.session:
+    if 'id' in request.session:
         request.session.flush()
         return redirect(landing)
     # else:
@@ -72,58 +72,64 @@ def user_registeration(request):
 ####ADMIN####
 
 def admin_home(request):
-    return render(request,'admin_home.html')
+    if 'id' in request.session:
+        return render(request,'admin_home.html')
 
 def view_users(request):
-    data1=User.objects.filter(login__Status="Accepted")
-    return render(request,'view_users.html',{'data':data1})
+    if 'id' in request.session:
+        data1=User.objects.filter(login__Status="Accepted")
+        return render(request,'view_users.html',{'data':data1})
 
 def verify_users(request):
-    data=User.objects.all()
-    return render(request,'verify_user.html',{'data':data})
+    if 'id' in request.session:
+        data=User.objects.all()
+        return render(request,'verify_user.html',{'data':data})
 
 
 
 def user_status(request,id):
-    data=Login.objects.get(id=id)
-    if request.method=='POST':
-        data1=request.POST['Status']
-        if data1=='Accepted':
-            data.Status='Accepted'
-        elif data1=='Rejected':
-           data.Status='Rejected'
-        data.save() 
-    return redirect(verify_users)
+    if 'id' in request.session:
+        data=Login.objects.get(id=id)
+        if request.method=='POST':
+            data1=request.POST['Status']
+            if data1=='Accepted':
+                data.Status='Accepted'
+            elif data1=='Rejected':
+                data.Status='Rejected'
+            data.save() 
+        return redirect(verify_users)
 
 def change_password(request):
-    data=request.session['id']
-    data1=Login.objects.get(id=data)
-    if request.method=='POST':
-        newpwd=request.POST['newpwd']
-        confpwd=request.POST['confpwd']
-        if newpwd!=confpwd:
-                return render(request,'change_password.html',{'x':'Password not matching!!!'})
+    if 'id' in request.session:
+        data=request.session['id']
+        data1=Login.objects.get(id=data)
+        if request.method=='POST':
+            newpwd=request.POST['newpwd']
+            confpwd=request.POST['confpwd']
+            if newpwd!=confpwd:
+                    return render(request,'change_password.html',{'x':'Password not matching!!!'})
+            else:
+                data1.Password=newpwd
+                data1.save()
+                return render(request,'change_password.html',{'x':'Password Successfully changed'})
         else:
-            data1.Password=newpwd
-            data1.save()
-            return render(request,'change_password.html',{'x':'Password Successfully changed'})
-    else:
-        return render(request,'change_password.html')
+            return render(request,'change_password.html')
 
 
 def view_review(request):
-    content=Review.objects.all()
-    items_per_page = 10
-    paginator = Paginator(content, items_per_page)
-    page = request.GET.get('page', 1)
+    if 'id' in request.session:
+        content=Review.objects.all()
+        items_per_page = 10
+        paginator = Paginator(content, items_per_page)
+        page = request.GET.get('page', 1)
 
-    try:
-        data = paginator.page(page)
-    except PageNotAnInteger:
-        data = paginator.page(1)
-    except EmptyPage:
-        data = paginator.page(paginator.num_pages)
-    return render(request,'view_review.html',{'data':data})
+        try:
+            data = paginator.page(page)
+        except PageNotAnInteger:
+            data = paginator.page(1)
+        except EmptyPage:
+            data = paginator.page(paginator.num_pages)
+        return render(request,'view_review.html',{'data':data})
 
 
 
