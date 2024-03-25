@@ -21,6 +21,9 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'view_users' %}"><i class="fa-solid fa-users"></i>&nbsp; View Approved Users</a>
+            </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'admin_home' %}"><i class="fa-solid fa-angles-left"></i>&nbsp; Home</a>
                 </li>
@@ -33,6 +36,10 @@
 </div>
 <div class="login">
     <h4 class="heading" style="text-align: center; margin-bottom: 50px; color:brown"> REGISTERED USERS</h4>
+    <!-- <form class="d-flex" role="search">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-info" type="submit">Search</button>
+    </form><br> -->
     <table class="table table-success table-striped">
         <thead class="table-light">
             <tr>
@@ -63,9 +70,9 @@
                 {% if i.login.Status == "Pending" %}
                 <input type="text" name="status" hidden>
                 <button class="btn btn-success ms-5" name="Status" value="Accepted">ACCEPT</button>
-                <button class="btn btn-danger ms-5  " name="Status" value="Rejected">REJECT</button>
+                <button class="btn btn-danger ms-5  " name="Status" value="Rejected" onclick="return confirm('Are You Sure?')">REJECT</button>
                 {% elif i.login.Status == "Accepted" %}
-                <button class="btn btn-danger ms-5 " name="Status" value="Rejected">REJECT</button>
+                <button class="btn btn-danger ms-5 " name="Status" value="Rejected" onclick="return confirm('Are You Sure?')">REJECT</button>
                 {% else %}
                 <button class="btn btn-success ms-5" name="Status" value="Accepted">ACCEPT</button>
                 {% endif %}

@@ -40,12 +40,12 @@
           {% csrf_token %}
           <div class="form-group mb-2 ">
             <label  class="l" for="exampleInputEmail1">Email address</label><br>
-            <input type="email"  name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your email address">
+            <input type="email"  name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your email address" required>
          
           <!-- <div class="form-group"> -->
             <label class="l" for="exampleInputPassword1">Password</label><br>
             <!-- <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder=" Enter your password"> -->
-            <input type="password" name="password" class="form-control"id="passwordField" placeholder="Enter your password" />
+            <input type="password" name="password" class="form-control"id="passwordField" placeholder="Enter your password" required/>
             <div style="font-size: 18px; margin-top: 10px;"><input type="checkbox" onclick="togglePasswordVisibility()"><span> Show Password</span></div>
 
 

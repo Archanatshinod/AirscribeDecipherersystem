@@ -36,15 +36,15 @@
       {% csrf_token %}
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Name</span>
-        <input type="text" class="form-control"  name="Name"placeholder="Enter  your Name" aria-label="Username" aria-describedby="basic-addon1">
+        <input type="text" class="form-control"  name="Name"placeholder="Enter  your Name" aria-label="Username" aria-describedby="basic-addon1" required pattern="[A-Z a-z ]+" title="only contain alphabets">
       </div>
     <div class="input-group mb-3">
         <span class="input-group-text"  id="basic-addon1">Email</span>
-        <input type="email" class="form-control"name="Email" placeholder="Enter your Email address" aria-label="email" aria-describedby="basic-addon1">
+        <input type="email" class="form-control"name="Email" placeholder="Enter your Email address" aria-label="email" aria-describedby="basic-addon1" required>
       </div>
       <div class="input-group mb-3">
         <span class="input-group-text"  id="basic-addon1">Phone Number</span>
-        <input type="text" class="form-control"name="Phone" placeholder="Enter your Phone" aria-label="phone" aria-describedby="basic-addon1">
+        <input type="text" class="form-control"name="Phone" placeholder="Enter your Phone" aria-label="phone" aria-describedby="basic-addon1"pattern="[9876][0-9]{9}" maxlength="10"title="only contain numbers">
       </div>
       <div class="input-group mb-3">
         <span class="input-group-text"  id="basic-addon1">Date of Birth</span>
@@ -61,11 +61,11 @@
       </div>
       <div class="input-group mb-3" style="margin-top: 20px;">
         <span class="input-group-text" id="basic-addon1">Password</span>
-        <input type="password" class="form-control" name="Password"placeholder="Enter your Password" aria-label="password" aria-describedby="basic-addon1">
+        <input type="password" class="form-control" name="Password"placeholder="Enter your Password" aria-label="password" aria-describedby="basic-addon1"placeholder="**********" required="" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
       </div>
       <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Confirm Password</span>
-        <input type="password" class="form-control" name="Confirm_password" placeholder="Confirm your Password" aria-label="password2" aria-describedby="basic-addon1">
+        <input type="password" class="form-control" name="Confirm_password" placeholder="Confirm your Password" aria-label="password2" aria-describedby="basic-addon1"placeholder="**********" required="" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
       </div>
       <div class="mb-4" style="text-align: center;">
         <button type="submit" class="btn btn-primary btn-lg">REGISTER</button></div>
