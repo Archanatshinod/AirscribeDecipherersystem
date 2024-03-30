@@ -19,6 +19,7 @@
 }
 .form-label{
 font-size: 150%;
+
 }
 .form-control {
   /* line-height: 2.5; */
@@ -43,6 +44,11 @@ text-decoration: none;
   }
   h2{
     color: darkslateblue;
+  }
+  .mb-3{
+
+    font-family: Proza Libre;
+
   }
   /* .fonts{ */
     /* font-size: 100%; */

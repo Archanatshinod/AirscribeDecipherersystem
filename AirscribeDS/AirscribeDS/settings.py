@@ -112,7 +112,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+from django.utils import timezone
+
+# Set the timezone to Kolkata, India
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 

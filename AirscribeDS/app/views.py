@@ -181,12 +181,15 @@ def changepassword_user(request):
             data2.save()
     return render(request,'changepassword_user.html')
 
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
 def user_view_review(request):
-    data=request.session['id']
-    data1=Login.objects.get(id=data)
-    data2=User.objects.get(login=data1.id)
-    content=Review.objects.all()
-    items_per_page = 1
+    data = request.session['id']
+    data1 = Login.objects.get(id=data)
+    data2 = User.objects.get(login=data1.id)
+    content = Review.objects.all()
+    items_per_page = 5
     paginator = Paginator(content, items_per_page)
     page = request.GET.get('page', 1)
 
@@ -196,14 +199,21 @@ def user_view_review(request):
         data = paginator.page(1)
     except EmptyPage:
         data = paginator.page(paginator.num_pages)
-    if request.method=="POST":
-        review=request.POST.get('review',None)
-        rating=request.POST.get('rating',0)
-        data3=Review.objects.create(user_id=data2,review=review,rating=rating)
-        data3.save()
-        return render(request,'user_view_review.html',{'message':'Review/Rating added successfully!!!','reviews':data})
+
+    if request.method == "POST":
+        review = request.POST.get('review', None)
+        rating = request.POST.get('rating', 0)
+
+        if review or rating:
+            data3 = Review.objects.create(user_id=data2, review=review, rating=rating)
+            data3.save()
+            # Redirect to the same page after POST request
+            return render(request,'user_view_review.html',{'message':'Review/Rating added successfully!!!','reviews':data})
+        else:
+            return render(request, 'user_view_review.html', {'message': 'Must need to fill one content', 'reviews': data})
     else:
-        return render(request,'user_view_review.html',{'reviews':data})
+        return render(request, 'user_view_review.html', {'reviews': data})
+
 
 
 

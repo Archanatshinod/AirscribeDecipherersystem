@@ -21,7 +21,7 @@
       float: left;
       height: 46px;
       padding: 0px 10px;
-      text-align: center;
+      /* text-align: center; */
     }
 
     .rate:not(:checked)>input {
@@ -66,8 +66,9 @@
 
     .main {
       background-image: url(../static/images/background2.jpg);
-      background-size: cover;
-      height: 965px;
+      background-repeat: no-repeat;
+      background-size: 100% 925px;
+      height: 925px;
       padding-top: 30px;
     }
   </style>
@@ -101,14 +102,14 @@
         <div class="modal-dialog modal-dialog-centered modal-xl">
           <div class="modal-content" style="text-align:center;">
             <div class="modal-header ">
-              <h5 class="modal-title" id="staticBackdropLabel">Review/Rating</h5>
+              <h5 class="modal-title" id="staticBackdropLabel" style="color: brown;">Review/Rating</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form class="forms-sample" action="{%  url 'user_view_review' %}" method="post">
               {% csrf_token %}
 
               <div class="modal-body flex-column d-flex gap-5 ">
-                <div class="form-group">
+                <div class="form-group" style="text-align: left;">
                   <label for="exampleTextarea1">Review</label>
                   <textarea class="form-control" name="review" id="exampleTextarea1"></textarea>
                   <div class="rate">
@@ -133,14 +134,20 @@
                 <button type="submit" class="btn btn-primary">submit</button>
               </div>
             </form>
-          </div>
+            </div>
+            <!-- <div>
+            {% if message %}
+        <p class="text-danger">{{message}}</p>
+        {% endif %}
+          </div> -->
         </div>
-      </div><br><br>
-      <div> {% if message %}
+      </div>
+    </div>
+      <div style="width: 40%;margin: auto; text-align: center; font-size: large; padding: 10px;"> {% if message %}
         <p class="text-danger">{{message}}</p>
         {% endif %}
       </div>
-    </div>
+    
 
 
     <div class="pt-5">
@@ -153,8 +160,12 @@
         </tr>
         {% for i in reviews %}
         <tr>
-          <td>{{i.user_id.Name}}</td>
-          <td>{{i.review}}</td>
+          <td>{% if i.user_id.Name %}
+            {{i.user_id.Name}}
+          {% endif %}</td>
+          <td>{% if i.review %}
+            {{i.review}}
+            {% endif %}</td>
           <td>
             <div>
               <div style="color: rgb(233, 136, 10); font-size: 20px;">
