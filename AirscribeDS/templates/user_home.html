@@ -22,7 +22,7 @@
             <div class="collapse navbar-collapse justify-content-end px-4" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa-solid fa-house"></i>&nbsp; Home &nbsp;&nbsp;</a>
+                        <a class="nav-link" href="{%  url 'user_view_review' %}"style="color: crimson;"><i class="fa-solid fa-house"></i>&nbsp; Home &nbsp;&nbsp;</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'view_profile'%}"><i class="fa-solid fa-circle-user"></i>&nbsp; Profile&nbsp;&nbsp;</a>
@@ -64,7 +64,7 @@
                     </svg></a></div>  -->
                     <!-- <a class="play-btn" href="#"></a> -->
                     <div class='container' style="padding-top: 0px;">
-  <a href="" class='playBut' style="padding-top:10px;">
+  <a href="{% url 'air_scribe' %}" class='playBut' style="padding-top:10px;">
     
     <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In  -->
     <svg version="1.1"
@@ -82,10 +82,18 @@
         
       </a>
     </div>
-                  <!-- </div> -->
+           
                 <!-- </div> -->
             <!-- </div> -->
     </div>
+    <div style="background-color: white;">{{data}}       <!-- </div> -->
+           {% if saved_image %}
+           
+           <img src="{% static saved_image %}" alt="Image">
+         
+         
+          {% endif %}
+        </div>
     </div>
 </body>
 </html>
@@ -102,11 +110,12 @@ width:40%;
   font-size: 25px;
   padding: 20px;
   margin: auto;
-  border-radius: 20px;
-  border-bottom: 10px;
+  border-radius: 10px;
+  /* border-bottom: 10px; */
   text-align: center;
-  /* background-color: rgba(255, 255, 255, 0.699); */
-  border-radius: 20px;
+  height: fit-content;
+  background-color: rgba(23, 22, 22, 0.699);
+  /* border-radius: 20px; */
   
 }
 /* .play-btn-box {

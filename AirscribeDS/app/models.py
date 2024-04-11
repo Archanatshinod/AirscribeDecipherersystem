@@ -8,6 +8,8 @@ class Login(models.Model):
     Type=models.CharField(max_length=20)
     status_choice=(('Accepted','Accepted'),('Rejected','Rejected'),('Pending','Pending'))
     Status=models.CharField(choices=status_choice,default='Pending',max_length=20)
+    last_login = models.DateTimeField(null=True, blank=True)
+    last_logout = models.DateTimeField(null=True, blank=True)
 
 
 class User(models.Model):
@@ -19,6 +21,7 @@ class User(models.Model):
     Gender=models.CharField(max_length=10)  
     Password=models.CharField(max_length=50)  
     Confirm_password=models.CharField(max_length=50)
+
     
 class Review(models.Model):
     user_id=models.ForeignKey(User,on_delete=models.CASCADE)

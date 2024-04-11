@@ -30,6 +30,7 @@ urlpatterns = [
     path('verify_users', views.verify_users,name='verify_users'),
     path('view_users', views.view_users,name='view_users'),
     path('view_review', views.view_review,name='view_review'),
+    path('view_login_details',views.view_login_details,name='view_login_details'),
     
     path('user_home', views.user_home,name='user_home'),
     path('user_registeration', views.user_registeration,name='user_registeration'),
@@ -38,5 +39,6 @@ urlpatterns = [
     path('rating', views.rating,name='rating'),
     path('user_view_review', views.user_view_review,name='user_view_review'),
     path('changepassword_user', views.changepassword_user,name='changepassword_user'),
+    path('air_scribe', views.air_scribe,name='air_scribe'),
     
 ]

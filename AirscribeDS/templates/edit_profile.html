@@ -34,7 +34,7 @@
    <div class="parent" >
     <!-- <img src="{% static 'images/background5.jpg'%}" width="100%" height="auto"> -->
     <div class="login">
-        <h4 class="heading" style="text-align: center; margin-bottom: 50px; color:brown;"> EDIT PROFILE</h4>
+        <h4 class="heading" style="text-align: center; margin-bottom: 50px; color:brown; margin-top: 20px;"> EDIT PROFILE</h4>
         <form class="px-4 py-3" action="{% url 'edit_profile' id=data.id %}" method="post">
             {% csrf_token %}
             <div class="mb-3">
@@ -99,7 +99,8 @@
   /* margin-top: 0px; */
   border-radius: 20px;
   border-bottom: 10px;
-  background-color: rgba(255, 255, 255, 0.699);
+  /* background-color: rgba(255, 255, 255, 0.699); */
+  background-color: white;
   border-radius: 20px;
   /* text-align: center; */
 }
@@ -111,8 +112,10 @@
   margin: auto;
   border-radius: 20px;
   border-bottom: 10px;
-  background-color: rgba(255, 255, 255, 0.699);
+  background-color: white;
+  /* background-color: rgba(255, 255, 255, 0.699); */
   border-radius: 20px;
+  font-family: Proza Libre;
 }
 }
 .mb-4{
@@ -142,5 +145,11 @@ padding: 20px;
   padding: 100px 0px;
   height: 980px;
 } */
+.form-label{
+  margin-top: 10px;
+}
+input{
+    border: 2px solid rgba(0, 0, 0, 0.29) !important;
+  }
 
 </style>

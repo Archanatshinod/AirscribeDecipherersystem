@@ -44,7 +44,7 @@
       </div>
       <div class="input-group mb-3">
         <span class="input-group-text"  id="basic-addon1">Phone Number</span>
-        <input type="text" class="form-control"name="Phone" placeholder="Enter your Phone" aria-label="phone" aria-describedby="basic-addon1"pattern="[9876][0-9]{9}" maxlength="10"title="only contain numbers">
+        <input type="text" class="form-control"name="Phone" placeholder="Enter your Phone" aria-label="phone" aria-describedby="basic-addon1"pattern="[9876][0-9]{9}" maxlength="10"title="10 numbers required.only contain numbers">
       </div>
       <div class="input-group mb-3">
         <span class="input-group-text"  id="basic-addon1">Date of Birth</span>
@@ -69,7 +69,12 @@
       </div>
       <div class="mb-4" style="text-align: center;">
         <button type="submit" class="btn btn-primary btn-lg">REGISTER</button></div>
+        <div style="width: 40%;margin: auto; text-align: center; font-size: large; padding: 10px;"> {% if x %}
+          <p class="text-danger">{{x}}</p>
+          {% endif %}
+        </div>
     </div>
+    
   </form>
   </div>
 </body>

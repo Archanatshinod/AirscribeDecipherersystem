@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>change password</title>
+  <title>review</title>
   <link rel="stylesheet" href="{% static 'css/style.css'%}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Proza Libre">
@@ -84,35 +84,28 @@
     </div>
 </nav>
 <div class="container-fluid main">
-    <div class="pt-5">
-      <table class="table ">
-        <tr>
-          <th>NAME</th>
-          <th>REVIEW</th>
-          <th>RATING</th>
-          <th>POSTED ON:</th>
-        </tr>
-        {% for i in data %}
-        <tr>
-          <td>{{i.user_id.Name}}</td>
-          <td>{{i.review}}</td>
-          <td>
-              <div>
+  <div class="pt-5  justify-content-center"> <!-- Aligning cards to center -->
+    <div class="row"style="width: 80%; margin-left:440px;">
+      {% for i in data %}
+      <div class="col-lg-8 mb-4"> <!-- Setting width to 75% for larger card -->
+        <div class="card h-100" > <!-- Making the card take full height -->
+          <div class="card-body">
+            <h3 class="card-title" style="color: crimson;">{{ i.user_id.Name }}</h5>
+            <p class="card-text">{{ i.review }}</p>
+            <div>
                 <div style="color: rgb(233, 136, 10);font-size: 20px;">
                   {% for star_value in "★★★★★"|slice:i.rating  %}
                   <span class="star">&#9733;</span>
                   {% endfor %}
                 </div>
               </div>
-            </td>
-          </td>
-          <td>{{i.date}}</td>
-          </tr>
-        
-        {% endfor %}
-      </table>
+            <p class="card-text">Posted On: {{ i.date }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
     </div>
-
+  </div>
 
     <div class="pagination mt-3 d-flex justify-content-end pe-5 mb-4  fw-bold text-black text-end ">
       <span class="step-links  ">
@@ -124,15 +117,16 @@
   
         <a href="?page={{ data.paginator.num_pages }}" class="text-decoration-none text-white btn btn-dark ">last &raquo;</a>
         {% endif %}
-        <span class="current text-white">
-          Page {{ data.number }} of {{ data.paginator.num_pages }}.
-        </span>
+        
   
         {% if data.has_next %}
   
         <a href="?page={{ data.next_page_number }}"
           class="text-decoration-none text-white  btn btn-dark ">next</a>
         {% endif %}
+      </span>
+      <span class="current text-white">
+        Page {{ data.number }} of {{ data.paginator.num_pages }}.
       </span>
     </div>
 </div>
